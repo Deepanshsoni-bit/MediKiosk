@@ -1,4 +1,4 @@
-package com.aireX.medikiosk.exception;
+package com.airex.medikiosk.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

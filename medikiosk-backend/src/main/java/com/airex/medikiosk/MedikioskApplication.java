@@ -1,4 +1,4 @@
-package com.aireX.medikiosk;
+package com.airex.medikiosk;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

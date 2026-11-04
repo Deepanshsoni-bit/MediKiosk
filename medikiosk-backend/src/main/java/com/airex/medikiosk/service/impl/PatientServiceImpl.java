@@ -1,16 +1,18 @@
-package com.aireX.medikiosk.service.impl;
+package com.airex.medikiosk.service.impl;
 
-import com.aireX.medikiosk.dto.PatientRequestDto;
-import com.aireX.medikiosk.dto.PatientResponseDto;
-import com.aireX.medikiosk.entity.Patient;
-import com.aireX.medikiosk.exception.ResourceNotFoundException;
-import com.aireX.medikiosk.repository.PatientRepository;
-import com.aireX.medikiosk.service.PatientService;
+import com.airex.medikiosk.dto.PatientRequestDto;
+import com.airex.medikiosk.dto.PatientResponseDto;
+import com.airex.medikiosk.entity.Patient;
+import com.airex.medikiosk.exception.DuplicateResourceException;
+import com.airex.medikiosk.exception.ResourceNotFoundException;
+import com.airex.medikiosk.repository.PatientRepository;
+import com.airex.medikiosk.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +25,7 @@ public class PatientServiceImpl implements PatientService {
     public PatientResponseDto createPatient(PatientRequestDto request) {
         if (request.getMobileNumber() != null
                 && patientRepository.existsByMobileNumber(request.getMobileNumber())) {
-            throw new IllegalArgumentException("A patient with this mobile number already exists");
+            throw new DuplicateResourceException("A patient with this mobile number already exists");
         }
 
         Patient patient = Patient.builder()
@@ -32,9 +34,8 @@ public class PatientServiceImpl implements PatientService {
                 .dateOfBirth(request.getDateOfBirth())
                 .mobileNumber(request.getMobileNumber())
                 .address(request.getAddress())
-                .abhaNumber(request.getAbhaNumber())
+                .abhaNumber(request.getAbhaNumber()) 
                 .abhaAddress(request.getAbhaAddress())
-                .abhaVerified(request.getAbhaNumber() != null)
                 .profilePhotoBase64(request.getProfilePhotoBase64())
                 .build();
 
@@ -65,17 +66,43 @@ public class PatientServiceImpl implements PatientService {
     @Transactional
     public PatientResponseDto updatePatient(Long id, PatientRequestDto request) {
         Patient patient = findOrThrow(id);
-
+        
+        //check if while updating, the patient do not enter a number that already exists.
+        if (request.getMobileNumber() != null) {
+        	Optional<Patient> owner = patientRepository.findByMobileNumber(request.getMobileNumber());
+        	
+        	if(owner.isPresent() && !owner.get().getId().equals(id)) {
+        		throw new DuplicateResourceException("A Patient With This Mobile Number Already Exists!");
+        	}
+        }
+        
+        //check if while updating, the patient do not enter a abhaNumber that already exists.
+        if(request.getAbhaNumber() != null) {
+        	Optional<Patient> owner = patientRepository.findByAbhaNumber(request.getAbhaNumber());
+        	
+        	if(owner.isPresent() && !owner.get().getId().equals(id)) {
+        		throw new DuplicateResourceException("A Patient With This Abha Number Already Exists!");
+        	}
+        }
+        
+        //check if while updating, the patient do not enter a abhaAddress that already exists.
+        if(request.getAbhaAddress() != null) {
+        	Optional<Patient> owner = patientRepository.findByAbhaAddress(request.getAbhaAddress());
+        	
+        	if(owner.isPresent() && !owner.get().getId().equals(id)) {
+        		throw new DuplicateResourceException("A Patient With This AbhaAddress Alreay Exists!");
+        	}
+        }
+        
         patient.setFullName(request.getFullName());
         patient.setGender(request.getGender());
         patient.setDateOfBirth(request.getDateOfBirth());
         patient.setMobileNumber(request.getMobileNumber());
         patient.setAddress(request.getAddress());
-        if (request.getAbhaNumber() != null) {
-            patient.setAbhaNumber(request.getAbhaNumber());
-            patient.setAbhaAddress(request.getAbhaAddress());
-            patient.setAbhaVerified(true);
-        }
+        patient.setAbhaNumber(request.getAbhaNumber());
+        patient.setAbhaAddress(request.getAbhaAddress());
+        patient.setAbhaVerified(true);
+ 
         if (request.getProfilePhotoBase64() != null) {
             patient.setProfilePhotoBase64(request.getProfilePhotoBase64());
         }

@@ -1,8 +1,8 @@
-package com.aireX.medikiosk.controller;
+package com.airex.medikiosk.controller;
 
-import com.aireX.medikiosk.dto.PatientRequestDto;
-import com.aireX.medikiosk.dto.PatientResponseDto;
-import com.aireX.medikiosk.service.PatientService;
+import com.airex.medikiosk.dto.PatientRequestDto;
+import com.airex.medikiosk.dto.PatientResponseDto;
+import com.airex.medikiosk.service.PatientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

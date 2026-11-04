@@ -1,6 +1,6 @@
-package com.aireX.medikiosk.repository;
+package com.airex.medikiosk.repository;
 
-import com.aireX.medikiosk.entity.Patient;
+import com.airex.medikiosk.entity.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

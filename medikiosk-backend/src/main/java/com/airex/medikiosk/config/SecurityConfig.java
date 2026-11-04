@@ -1,4 +1,4 @@
-package com.aireX.medikiosk.config;
+package com.airex.medikiosk.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

@@ -1,6 +1,6 @@
-package com.aireX.medikiosk.dto;
+package com.airex.medikiosk.dto;
 
-import com.aireX.medikiosk.entity.Gender;
+import com.airex.medikiosk.entity.Gender;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;

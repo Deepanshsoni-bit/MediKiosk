@@ -1,4 +1,4 @@
-package com.aireX.medikiosk.entity;
+package com.airex.medikiosk.entity;
 
 public enum Gender {
     MALE,

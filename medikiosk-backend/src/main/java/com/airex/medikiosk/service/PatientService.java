@@ -1,7 +1,7 @@
-package com.aireX.medikiosk.service;
+package com.airex.medikiosk.service;
 
-import com.aireX.medikiosk.dto.PatientRequestDto;
-import com.aireX.medikiosk.dto.PatientResponseDto;
+import com.airex.medikiosk.dto.PatientRequestDto;
+import com.airex.medikiosk.dto.PatientResponseDto;
 
 import java.util.List;
 
