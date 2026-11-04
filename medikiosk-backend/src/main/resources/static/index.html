@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medikiosk | Welcome</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7fcfb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+
+        .kiosk-container {
+            text-align: center;
+            background: #ffffff;
+            padding: 3rem 4rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 128, 96, 0.08);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Floral decorative elements using CSS */
+        .kiosk-container::before,
+        .kiosk-container::after {
+            content: "🌸";
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.6;
+        }
+
+        .kiosk-container::before {
+            top: 20px;
+            left: 20px;
+        }
+
+        .kiosk-container::after {
+            top: 20px;
+            right: 20px;
+        }
+
+        .illustration {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background-color: #eaf6f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 4px solid #d4ece8;
+            overflow: hidden;
+        }
+
+        .illustration img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #0c6b58;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        p {
+            font-size: 1rem;
+            font-weight: 300;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+        }
+
+        .enter-btn {
+            background-color: #0c6b58;
+            color: #ffffff;
+            border: none;
+            padding: 12px 32px;
+            font-size: 1rem;
+            font-family: inherit;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(12, 107, 88, 0.2);
+        }
+
+        .enter-btn:hover {
+            background-color: #095042;
+            transform: translateY(-2px);
+        }
+
+        .enter-btn:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="kiosk-container">
+        <div class="illustration">
+            <img src="https://img.freepik.com/free-vector/namaste-concept-illustration_114360-2216.jpg" alt="Girl in Namaste Pose">
+        </div>
+
+        <h1>Medikiosk</h1>
+        <p>Ayurvedic OPD Management System</p>
+        
+        <button class="enter-btn" onclick="enterSystem()">Enter</button>
+    </div>
+
+    <script>
+        function enterSystem() {
+            console.log("Entering Medikiosk system...");
+        }
+    </script>
+</body>
+</html>
